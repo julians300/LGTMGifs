@@ -1,16 +1,17 @@
-import type { NextPage, GetStaticProps, GetServerSideProps } from "next";
+import type { GetStaticProps } from "next";
 import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 import GifList from "../../components/GifList/GifList";
 import { Gif } from "../../types/Gif";
 import Hero from "../../components/Hero/Hero";
+import allTags from "../../components/Header/alltags";
 
 interface Props {
   allGifs: Gif[];
   tag: string;
 }
 
-const Page = ({ allGifs, tag }: Props) => {
+const Tag = ({ allGifs, tag }: Props) => {
   return (
     <Box>
       <Head>
@@ -24,22 +25,19 @@ const Page = ({ allGifs, tag }: Props) => {
   );
 };
 
-// export const getStaticPaths = async ({ params }) => {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${params!.tag}`);
-//   const allGifs = await res.json();
-//   const formattedGifs = allGifs.map((gif: any) => cleanRecordData(gif));
-//   const paths = formattedGifs.map((gif: Gif) => {
-//     return {
-//       params: { slug: slugify(gif.name) },
-//     };
-//   });
-//   return {
-//     paths: [...paths, { params: {} }],
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths = async () => {
+  const paths = allTags.map((tag) => {
+    return {
+      params: { tag: tag.slug },
+    };
+  });
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tags/${params!.tag}`);
   const allGifs = await res.json();
   return {
@@ -47,4 +45,4 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 };
 
-export default Page;
+export default Tag;

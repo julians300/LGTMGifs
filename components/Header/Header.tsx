@@ -24,7 +24,7 @@ const Header = () => {
                 >
                   <Flex align={"center"}>
                     <Box display={"inline"} mr={"12px"} rounded={"full"} fontSize={0}>
-                      <Image src="/images/lgtm_thumb.png" width={"40px"} height={"40px"} />
+                      <Image src="/images/lgtm_thumb.png" width={"40px"} height={"40px"} alt="LGTM Gifs" />
                     </Box>
                     <Text display={"inline"} fontSize={"20px"} fontWeight={"700"} letterSpacing={"-.5px"}>
                       LGTM Gifs

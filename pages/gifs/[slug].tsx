@@ -25,7 +25,7 @@ interface Props {
   gif: Gif;
 }
 
-const SingleGifPageLayout = ({ gif }: Props) => {
+const SingleGif = ({ gif }: Props) => {
   const copyMarkdownValue = `![${gif.name || "LGTM"}](${gif.thumbnail.url})`;
   const copyURLValue = gif.thumbnail.url;
   const { onCopy: onCopyMD, hasCopied: hasCopiedMD } = useClipboard(copyMarkdownValue);
@@ -47,7 +47,7 @@ const SingleGifPageLayout = ({ gif }: Props) => {
           <Stack>
             <Box>
               <CardWrap>
-                <Image src={gif.thumbnail.url} w={{ base: "100%" }} />
+                <Image src={gif.thumbnail.url} w={{ base: "100%" }} alt={gif.name} />
               </CardWrap>
             </Box>
           </Stack>
@@ -119,10 +119,6 @@ const CardWrap = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 };
 
 export const getStaticPaths = async () => {
-  // const totalRes = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total`);
-  // const total = totalRes.data;
-  // console.log(11111, total);
-
   const totalRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
   const total = await totalRes.json();
   const pageCount = Math.ceil(total / GIFS_PER_PAGE);
@@ -154,4 +150,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export default SingleGifPageLayout;
+export default SingleGif;

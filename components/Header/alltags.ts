@@ -1,4 +1,4 @@
-export default [
+const tags = [
   { name: "Guy", slug: "guy" },
   { name: "Happy", slug: "happy" },
   { name: "Laptop", slug: "laptop" },
@@ -48,3 +48,5 @@ export default [
   { name: "Kid", slug: "kid" },
   { name: "Kanye", slug: "kanye" },
 ];
+
+export default tags;

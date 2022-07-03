@@ -1,4 +1,4 @@
-export default [
+const headerTags = [
   {
     name: "Funny",
     slug: "funny",
@@ -36,3 +36,5 @@ export default [
     slug: "female",
   },
 ];
+
+export default headerTags;

@@ -4,7 +4,7 @@ import { Gif } from "../../../types/Gif";
 import { cleanRecordData } from "../../../utils/cleanRecordData";
 import table from "../../../utils/getAirtableBase";
 
-export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
+const page = async (req: NextApiRequest, res: NextApiResponse<{}>) => {
   const pageOffset = req.query.page as string;
   let i = 1;
   let pageRecords: Gif[] = [];
@@ -32,3 +32,5 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
       }
     );
 };
+
+export default page;
