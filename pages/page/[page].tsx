@@ -25,21 +25,21 @@ const Page = ({ gifs, pageNumber, total }: Props) => {
   );
 };
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
-//   const count = await res.json();
-//   let paths = [];
-//   const pageCount = Math.ceil(count / GIFS_PER_PAGE);
-//   for (let i = 1; i <= pageCount; i++) {
-//     paths.push({ params: { page: `${i}` } });
-//   }
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
+  const count = await res.json();
+  let paths = [];
+  const pageCount = Math.ceil(count / GIFS_PER_PAGE);
+  for (let i = 1; i <= pageCount; i++) {
+    paths.push({ params: { page: `${i}` } });
+  }
+  return {
+    paths,
+    fallback: false,
+  };
+};
 
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${params!.page}`);
   const gifs = await res.json();
   const totalRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total`);
