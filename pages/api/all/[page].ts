@@ -17,7 +17,6 @@ export default async (req: NextApiRequest, res: NextApiResponse<{}>) => {
     .eachPage(
       (records, fetchNextPage) => {
         if (i === Number(pageOffset)) {
-          console.log(records);
           pageRecords = records.map((record) => cleanRecordData(record));
         }
         i++;

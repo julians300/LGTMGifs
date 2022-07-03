@@ -26,7 +26,7 @@ const Page = ({ gifs, pageNumber, total }: Props) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch(`http://localhost:3000/api/total/`);
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/total/`);
   const count = await res.json();
   let paths = [];
   const pageCount = Math.ceil(count / GIFS_PER_PAGE);
@@ -40,9 +40,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/api/all/${params!.page}`);
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/${params!.page}`);
   const gifs = await res.json();
-  const totalRes = await fetch(`http://localhost:3000/api/total`);
+  const totalRes = await fetch(`${process.env.NEXT_BASE_URL}/api/total`);
   const total = await totalRes.json();
   return {
     props: { gifs, pageNumber: Number(params!.page), total },

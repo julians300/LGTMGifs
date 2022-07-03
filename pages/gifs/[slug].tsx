@@ -119,19 +119,25 @@ const CardWrap = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 };
 
 export const getStaticPaths = async () => {
-  const totalRes = await fetch(`http://localhost:3000/api/total/`);
+  // const totalRes = await axios.get(`${process.env.NEXT_BASE_URL}/api/total`);
+  // const total = totalRes.data;
+  // console.log(11111, total);
+
+  const totalRes = await fetch(`${process.env.NEXT_BASE_URL}/api/total/`);
   const total = await totalRes.json();
   const pageCount = Math.ceil(total / GIFS_PER_PAGE);
   const allGifs: Gif[] = [];
 
   for (let i = 1; i <= pageCount; i++) {
-    const res = await fetch(`http://localhost:3000/api/all${i}`);
-    const gifs = await res.json();
-    allGifs.push(gifs);
+    const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/${i}`);
+    const gifs: Gif[] = await res.json();
+    gifs.forEach((gif) => {
+      allGifs.push(gif);
+    });
   }
 
   const paths = allGifs.map((gif) => {
-    return { params: { slug: `${slugify(gif.name)}` } };
+    return { params: { slug: slugify(gif.name) } };
   });
 
   return {
@@ -141,7 +147,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`http://localhost:3000/api/gifs/${params!.slug}`);
+  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/gifs/${params!.slug}`);
   const gif = await res.json();
   return {
     props: { gif },
