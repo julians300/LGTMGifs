@@ -72,8 +72,8 @@ const SingleGifPageLayout = ({ gif }: Props) => {
                       gif.tags.map((tag) => {
                         const slug = slugify(tag.toLowerCase());
                         return (
-                          <Box mb={4}>
-                            <Tag name={tag} key={slug} slug={slug} />
+                          <Box mb={4} key={slug}>
+                            <Tag name={tag} slug={slug} />
                           </Box>
                         );
                       })}
