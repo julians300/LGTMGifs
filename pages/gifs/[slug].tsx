@@ -118,35 +118,35 @@ const CardWrap = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  // const totalRes = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total`);
-  // const total = totalRes.data;
-  // console.log(11111, total);
+// export const getStaticPaths = async () => {
+//   // const totalRes = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total`);
+//   // const total = totalRes.data;
+//   // console.log(11111, total);
 
-  const totalRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
-  const total = await totalRes.json();
-  const pageCount = Math.ceil(total / GIFS_PER_PAGE);
-  const allGifs: Gif[] = [];
+//   const totalRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
+//   const total = await totalRes.json();
+//   const pageCount = Math.ceil(total / GIFS_PER_PAGE);
+//   const allGifs: Gif[] = [];
 
-  for (let i = 1; i <= pageCount; i++) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${i}`);
-    const gifs: Gif[] = await res.json();
-    gifs.forEach((gif) => {
-      allGifs.push(gif);
-    });
-  }
+//   for (let i = 1; i <= pageCount; i++) {
+//     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${i}`);
+//     const gifs: Gif[] = await res.json();
+//     gifs.forEach((gif) => {
+//       allGifs.push(gif);
+//     });
+//   }
 
-  const paths = allGifs.map((gif) => {
-    return { params: { slug: slugify(gif.name.toLowerCase()) } };
-  });
+//   const paths = allGifs.map((gif) => {
+//     return { params: { slug: slugify(gif.name.toLowerCase()) } };
+//   });
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/gifs/${params!.slug}`);
   const gif = await res.json();
   return {
