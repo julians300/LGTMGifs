@@ -137,7 +137,7 @@ export const getStaticPaths = async () => {
   }
 
   const paths = allGifs.map((gif) => {
-    return { params: { slug: slugify(gif.name) } };
+    return { params: { slug: slugify(gif.name.toLowerCase()) } };
   });
 
   return {
