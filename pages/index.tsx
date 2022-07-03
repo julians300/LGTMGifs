@@ -27,15 +27,6 @@ const Home = ({ allGifs }: Props) => {
   );
 };
 
-export async function getStaticPaths() {
-  const res = await fetch("http://localhost:3000/api/all/1");
-  const allGifs = await res.json();
-  return {
-    paths: allGifs.map((gif: Gif) => ({ params: { slug: slugify(gif.name) } })),
-    fallback: true, // false or 'blocking'
-  };
-}
-
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch("http://localhost:3000/api/all/1");
   const allGifs = await res.json();

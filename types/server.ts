@@ -1,3 +1,5 @@
+import { FieldSet } from "airtable";
+
 export interface Thumbnail {
   id: string;
   width: number;
@@ -8,7 +10,7 @@ export interface Thumbnail {
   type: string;
 }
 
-export interface Fields {
+export interface Fields extends FieldSet {
   Name: string;
   URL: string;
   Category: string;
