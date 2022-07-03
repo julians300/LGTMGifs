@@ -25,7 +25,7 @@ const Page = ({ allGifs, tag }: Props) => {
 };
 
 // export const getStaticPaths = async ({ params }) => {
-//   const res = await fetch(`${process.env.NEXT_BASE_URL}/api/all/${params!.tag}`);
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${params!.tag}`);
 //   const allGifs = await res.json();
 //   const formattedGifs = allGifs.map((gif: any) => cleanRecordData(gif));
 //   const paths = formattedGifs.map((gif: Gif) => {
@@ -40,7 +40,7 @@ const Page = ({ allGifs, tag }: Props) => {
 // };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/tags/${params!.tag}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tags/${params!.tag}`);
   const allGifs = await res.json();
   return {
     props: { allGifs, tag: params!.tag },
