@@ -2,7 +2,6 @@ import type { GetStaticProps } from "next";
 import slugify from "slugify";
 import {
   Box,
-  Image,
   Text,
   Stack,
   Icon,
@@ -20,6 +19,7 @@ import { HiLink } from "react-icons/hi";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import Head from "next/head";
 import { GIFS_PER_PAGE } from "../../constants/constants";
+import getVideoUrl from "../../utils/getVideoUrl";
 
 interface Props {
   gif: Gif;
@@ -33,6 +33,7 @@ const SingleGif = ({ gif }: Props) => {
   const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug}/&text=LGTM+${gif.name}`;
   const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${gif.slug}`;
   const pageTitle = `${gif.name} | LGTM Gifs`;
+  const videoUrl = getVideoUrl(gif);
   return (
     <>
       <Head>
@@ -43,7 +44,18 @@ const SingleGif = ({ gif }: Props) => {
           <Stack>
             <Box>
               <CardWrap>
-                <Image src={gif.thumbnail.url} w={{ base: "100%" }} alt={gif.name} />
+                <Box
+                  as="video"
+                  src={videoUrl}
+                  autoPlay={true}
+                  loop={true}
+                  muted={true}
+                  playsInline={true}
+                  h="100%"
+                  w="100%"
+                  objectFit="cover"
+                  onError={() => {}}
+                ></Box>
               </CardWrap>
             </Box>
           </Stack>

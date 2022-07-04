@@ -41,9 +41,9 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
         }}
         gap={5}
       >
-        {gifs.map((gif, index) => (
+        {gifs.map((gif) => (
           <Box key={gif.id}>
-            <GifItem gif={gif} index={index} />
+            <GifItem gif={gif} />
           </Box>
         ))}
       </Grid>
