@@ -30,12 +30,8 @@ const SingleGif = ({ gif }: Props) => {
   const copyURLValue = gif.thumbnail.url;
   const { onCopy: onCopyMD, hasCopied: hasCopiedMD } = useClipboard(copyMarkdownValue);
   const { onCopy: onCopyURL, hasCopied: hasCopiedURL } = useClipboard(copyURLValue);
-  const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug || ""}/&text=LGTM+${
-    gif.name
-  }`;
-  const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${
-    gif.slug || ""
-  }`;
+  const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug}/&text=LGTM+${gif.name}`;
+  const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${gif.slug}`;
   const pageTitle = `${gif.name} | LGTM Gifs`;
   return (
     <>
@@ -133,7 +129,7 @@ export const getStaticPaths = async () => {
   }
 
   const paths = allGifs.map((gif) => {
-    return { params: { slug: "biden-smile" } };
+    return { params: { slug: gif.slug } };
   });
 
   return {
@@ -143,7 +139,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/gifs/${params!.slug || ""}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/gifs/${params!.slug}`);
   const gif = await res.json();
   return {
     props: { gif },

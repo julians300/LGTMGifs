@@ -23,7 +23,7 @@ const CopyLinks = ({ url, name }: Props) => {
           onClick={onCopyMD}
           size={"xs"}
           variant={"ghost"}
-          aria-label={`Copy markdown for ${name || ""} gif`}
+          aria-label={`Copy markdown for ${name} gif`}
         >
           {hasCopiedMD ? (
             <Icon
@@ -49,7 +49,7 @@ const CopyLinks = ({ url, name }: Props) => {
           onClick={onCopyURL}
           size={"xs"}
           variant={"ghost"}
-          aria-label={`Copy image url for ${name || ""} gif`}
+          aria-label={`Copy image url for ${name} gif`}
         >
           {hasCopiedURL ? (
             <Icon
