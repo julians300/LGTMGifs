@@ -1,6 +1,7 @@
 export interface Gif {
   id: string;
   name: string;
+  slug: string;
   category: string;
   thumbnail: {
     url: string;

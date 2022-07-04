@@ -12,12 +12,11 @@ interface Props {
 }
 
 const Tag = ({ allGifs, tag }: Props) => {
+  const title = `${tag} | LGTM Gifs | Pull request approval gifs`;
   return (
     <Box>
       <Head>
-        <title>{tag} | LGTM Gifs | Pull request approval gifs</title>
-        <meta name="description" content="Pull Request Approval Gifs" />
-        <link rel="icon" href="/favicon.png" />
+        <title>{title}</title>
       </Head>
       <Hero h1={`#${tag}`} sub={"Level up your pull request approvals with LGTM Gifs."} />
       <GifList gifs={allGifs} />

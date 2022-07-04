@@ -5,9 +5,7 @@ const About = () => {
   return (
     <Box>
       <Head>
-        <title>LGTM Gifs | Pull request approval gifs</title>
-        <meta name="description" content="Pull Request Approval Gifs" />
-        <link rel="icon" href="/favicon.png" />
+        <title>About | LGTM Gifs | Pull request approval gifs</title>
       </Head>
       <Box maxW={"800px"} margin={"auto"}>
         <Stack spacing={4}>

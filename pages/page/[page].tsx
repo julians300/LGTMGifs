@@ -15,10 +15,11 @@ const Page = ({ gifs, pageNumber, total }: Props) => {
   const prevPage = pageNumber === 1 ? "/" : `/page/${pageNumber - 1}`;
   const nextPage = `/page/${pageNumber + 1}`;
   const showNextPage = pageNumber * GIFS_PER_PAGE <= total;
+  const pageTitle = `LGTM Gifs | Pull request approval gifs | Page ${pageNumber}`;
   return (
     <Box>
       <Head>
-        <title>LGTM Gifs | Pull request approval gifs | Page {pageNumber}</title>
+        <title>{pageTitle}</title>
       </Head>
       <GifList gifs={gifs} prevLink={prevPage} {...(showNextPage ? { nextLink: nextPage } : {})} />
     </Box>

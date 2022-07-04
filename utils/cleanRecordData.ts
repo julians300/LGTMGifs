@@ -1,4 +1,4 @@
-// import { Fields } from "../types/server";
+import { Fields } from "../types/server";
 import { Gif } from "../types/Gif";
 import { FieldSet, Record, Thumbnail } from "airtable";
 
@@ -6,6 +6,7 @@ export const cleanRecordData = (record: Record<FieldSet>): Gif => {
   return {
     id: record.id,
     name: record.fields.Name as string,
+    slug: record.fields.Slug as string,
     category: record.fields.Category as string,
     thumbnail: {
       url: record.fields.URL as string,

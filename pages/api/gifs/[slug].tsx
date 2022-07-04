@@ -4,13 +4,13 @@ import table from "../../../utils/getAirtableBase";
 
 const slug = async (req: NextApiRequest, res: NextApiResponse<{}>) => {
   const slug = req.query.slug as string;
-  const unslugify = slug.replace(/-/g, " ").toLocaleLowerCase();
   const records = await table
     .select({
-      filterByFormula: `SEARCH("${unslugify}", LOWER({Name}))`,
+      filterByFormula: `SEARCH("${slug}", {Slug})`,
     })
     .firstPage();
-  const record = records.filter((record) => (record.fields.Name as string).toLowerCase() === unslugify)[0];
+  // Filter out multiple records. Airtable returns any field that contains the slug, not an exact match.
+  const record = records.filter((record) => (record.fields.Slug as string).toLowerCase() === slug)[0];
   res.status(200).json(cleanRecordData(record));
 };
 

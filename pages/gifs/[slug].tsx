@@ -30,17 +30,13 @@ const SingleGif = ({ gif }: Props) => {
   const copyURLValue = gif.thumbnail.url;
   const { onCopy: onCopyMD, hasCopied: hasCopiedMD } = useClipboard(copyMarkdownValue);
   const { onCopy: onCopyURL, hasCopied: hasCopiedURL } = useClipboard(copyURLValue);
-  const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${slugify(gif.name)}/&text=LGTM+${
-    gif.name
-  }`;
-
-  const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${slugify(
-    gif.name
-  )}`;
+  const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug}/&text=LGTM+${gif.name}`;
+  const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${gif.slug}`;
+  const pageTitle = `${gif.name} | LGTM Gifs`;
   return (
     <>
       <Head>
-        <title>{gif.name} | LGTM Gifs </title>
+        <title>{pageTitle}</title>
       </Head>
       <Box w={"100%"} maxWidth={"1260px"} px={{ md: "40px", base: 0 }} m={"auto"}>
         <SimpleGrid columns={{ md: 2, base: 1 }} spacing={8}>
@@ -133,7 +129,7 @@ export const getStaticPaths = async () => {
   }
 
   const paths = allGifs.map((gif) => {
-    return { params: { slug: slugify(gif.name.toLowerCase()) } };
+    return { params: { slug: gif.slug } };
   });
 
   return {

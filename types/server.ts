@@ -20,4 +20,5 @@ export interface Fields extends FieldSet {
   Thumbnail: Thumbnail[];
   isApproved?: boolean;
   createdAt: string;
+  Slug: string;
 }
