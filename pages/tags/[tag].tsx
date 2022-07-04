@@ -27,7 +27,7 @@ const Tag = ({ allGifs, tag }: Props) => {
 export const getStaticPaths = async () => {
   const paths = allTags.map((tag) => {
     return {
-      params: { tag: "biden-smile" },
+      params: { tag: tag.slug },
     };
   });
   return {

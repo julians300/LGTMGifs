@@ -133,7 +133,7 @@ export const getStaticPaths = async () => {
   }
 
   const paths = allGifs.map((gif) => {
-    return { params: { slug: gif.slug || "" } };
+    return { params: { slug: "biden-smile" } };
   });
 
   return {
