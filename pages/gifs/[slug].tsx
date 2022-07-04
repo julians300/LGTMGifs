@@ -63,10 +63,20 @@ const SingleGif = ({ gif }: Props) => {
             <Box>
               <CardWrap>
                 <Stack spacing={4}>
-                  <Button variant={"outline"} onClick={onCopyMD}>
+                  <Button
+                    variant={"outline"}
+                    onClick={onCopyMD}
+                    data-splitbee-event-copyMd={gif.slug}
+                    data-splitbee-event="Copy"
+                  >
                     <Icon as={SiMarkdown} mr={2} /> {hasCopiedMD ? "Copied" : "Copy Markdown"}
                   </Button>
-                  <Button variant={"outline"} onClick={onCopyURL}>
+                  <Button
+                    variant={"outline"}
+                    onClick={onCopyURL}
+                    data-splitbee-event-copyUrl={gif.slug}
+                    data-splitbee-event="Copy"
+                  >
                     <Icon as={HiLink} mr={2} /> {hasCopiedURL ? "Copied" : "Copy Direct Link"}
                   </Button>
                 </Stack>
