@@ -66,7 +66,7 @@ const Header = () => {
           </HStack>
         </Container>
       </Box>
-      <Box w={"100%"} overflowX={"scroll"}>
+      <Box w={"100%"} overflowX={"auto"}>
         <TagList />
       </Box>
     </Box>
