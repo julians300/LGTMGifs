@@ -7,9 +7,10 @@ import { ImCheckmark } from "react-icons/im";
 interface Props {
   url: string;
   name: string;
+  slug: string;
 }
 
-const CopyLinks = ({ url, name }: Props) => {
+const CopyLinks = ({ url, name, slug }: Props) => {
   const { colorMode } = useColorMode();
   const copyMarkdownValue = `![${name || "LGTM"}](${url})`;
   const copyURLValue = url;
@@ -24,6 +25,8 @@ const CopyLinks = ({ url, name }: Props) => {
           size={"xs"}
           variant={"ghost"}
           aria-label={`Copy markdown for ${name} gif`}
+          data-splitbee-event-copyMd={slug}
+          data-splitbee-event="Copy"
         >
           {hasCopiedMD ? (
             <Icon
@@ -50,6 +53,8 @@ const CopyLinks = ({ url, name }: Props) => {
           size={"xs"}
           variant={"ghost"}
           aria-label={`Copy image url for ${name} gif`}
+          data-splitbee-event-copyUrl={slug}
+          data-splitbee-event="Copy"
         >
           {hasCopiedURL ? (
             <Icon

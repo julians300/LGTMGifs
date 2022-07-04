@@ -47,7 +47,7 @@ const GifItem = ({ gif }: Props) => {
           {gif.name}
         </Text>
         <Box>
-          <CopyLinks url={gif.thumbnail.url} name={gif.name} />
+          <CopyLinks url={gif.thumbnail.url} name={gif.name} slug={gif.slug} />
         </Box>
       </Flex>
     </Stack>
