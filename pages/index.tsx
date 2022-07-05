@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 import GifList from "../components/GifList/GifList";
 import { Gif } from "../types/Gif";
 import Hero from "../components/Hero/Hero";
-import slugify from "slugify";
+import { Stack } from "@chakra-ui/react";
 
 interface Props {
   allGifs: Gif[];
@@ -18,11 +18,13 @@ const Home = ({ allGifs }: Props) => {
         <meta name="description" content="Pull Request Approval Gifs" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Hero
-        h1={"The Perfect Pull Request Approval Responses"}
-        sub={"Say more with gifs and level up your pull request approvals."}
-      />
-      <GifList gifs={allGifs} nextLink="/page/2" />
+      <Stack spacing={8}>
+        <Hero
+          h1={"The Perfect Pull Request Approval Responses"}
+          sub={"Say more with gifs and level up your pull request approvals."}
+        />
+        <GifList gifs={allGifs} nextLink="/page/2" />
+      </Stack>
     </Box>
   );
 };

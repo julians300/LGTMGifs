@@ -32,8 +32,20 @@ const headerTags = [
     slug: "nod",
   },
   {
-    name: "Female",
-    slug: "female",
+    name: "Nice",
+    slug: "nice",
+  },
+  {
+    name: "Dance",
+    slug: "dance",
+  },
+  {
+    name: "Good job",
+    slug: "good-job",
+  },
+  {
+    name: "Clap",
+    slug: "clap",
   },
 ];
 

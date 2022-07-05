@@ -12,7 +12,7 @@ interface Props {
 
 const GifList = ({ gifs, nextLink, prevLink }: Props) => {
   return (
-    <Stack spacing={8}>
+    <Stack spacing={{ base: 2, md: 4, lg: 8 }}>
       {/* <Box>
         <Menu>
           <MenuButton as={Button} rightIcon="chevron-down">
@@ -33,13 +33,13 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
       </Box> */}
       <Grid
         templateColumns={{
-          xl: "repeat(5, minmax(0, 20%))",
-          lg: "repeat(4, minmax(0, 25%))",
+          xl: "repeat(6, minmax(0, 16.66%))",
+          lg: "repeat(5, minmax(0, 20%))",
           md: "repeat(3, minmax(0, 33.333%))",
           sm: "repeat(2, minmax(0, 50%))",
           base: "repeat(2, minmax(0, 50%))",
         }}
-        gap={5}
+        gap={{ base: 4, xl: 5 }}
       >
         {gifs.map((gif) => (
           <Box key={gif.id}>
@@ -47,8 +47,8 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
           </Box>
         ))}
       </Grid>
-      <Box textAlign={"center"}>
-        <Flex justifyContent={"center"}>
+      <Box textAlign={"right"}>
+        <Flex justifyContent={"right"}>
           <ButtonGroup spacing={4}>
             {prevLink && (
               <NextLink href={prevLink}>

@@ -20,17 +20,9 @@ const Layout = ({ children }: Props) => {
       </Head>
       <Box backgroundColor={colorMode === "light" ? "#ffffff" : "#14171b"} borderTop={"2px solid #e65942"}>
         <Stack spacing={8}>
-          <Box>
-            <Header />
-          </Box>
-          <Box>
-            <Container>
-              <Box>{children}</Box>
-            </Container>
-          </Box>
-          <Box>
-            <Footer />
-          </Box>
+          <Header />
+          <Container>{children}</Container>
+          <Footer />
         </Stack>
       </Box>
     </>

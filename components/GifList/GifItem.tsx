@@ -14,11 +14,11 @@ const GifItem = ({ gif }: Props) => {
   const videoUrl = getVideoUrl(gif);
   return (
     <Stack>
-      <Box transition={".3s ease all"} _hover={{ transform: "scale(1.05)" }}>
+      <Box transition={".3s ease all"} _hover={{ transform: "scale(1.04)" }}>
         <NextLink href={`/gifs/${gif.slug}`}>
-          <Link href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={"4px"}>
-            <AspectRatio ratio={1.25 / 1}>
-              <Box m={0} border={0} rounded={"4px"} w="100%" height="100%" bg="gray.100">
+          <Link href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={4}>
+            <AspectRatio ratio={1 / 1.2}>
+              <Box m={0} border={0} rounded={4} w="100%" height="100%" bg="gray.100">
                 <Box
                   as="video"
                   src={videoUrl}
@@ -37,15 +37,17 @@ const GifItem = ({ gif }: Props) => {
         </NextLink>
       </Box>
       <Flex justifyContent={"space-between"} align={"center"}>
-        <Text
-          fontSize={"14px"}
-          fontWeight={600}
-          display={"inline"}
-          color={colorMode === "light" ? "#333333" : "gray.400"}
-          maxWidth={"100%"}
-        >
-          {gif.name}
-        </Text>
+        <Box noOfLines={1}>
+          <Text
+            fontSize={"14px"}
+            fontWeight={600}
+            display={"inline"}
+            color={colorMode === "light" ? "#333333" : "gray.400"}
+            maxWidth={"100%"}
+          >
+            {gif.name}
+          </Text>
+        </Box>
         <Box>
           <CopyLinks url={gif.thumbnail.url} name={gif.name} slug={gif.slug} />
         </Box>

@@ -1,36 +1,43 @@
 import React from "react";
 import NextLink from "next/link";
-import { Box, Flex, Text, Image, Link, Stack, HStack, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, Text, Image, Link, Stack, HStack, useColorMode, Divider } from "@chakra-ui/react";
 import Container from "../common/Container";
 
 const Footer = () => {
   const { colorMode } = useColorMode();
   return (
-    <Box as={"footer"} paddingY={{ md: 16, sm: 10, base: 8 }} borderTopWidth={1}>
+    <Box
+      as={"footer"}
+      backgroundColor={colorMode === "light" ? "#ffffff" : "#0d1013"}
+      fontSize={".8rem"}
+      paddingY={{ md: 3, base: 2 }}
+      borderTopWidth={1}
+      position="sticky"
+      bottom={0}
+    >
       <Container>
         <Flex justifyContent={"space-between"} flexDirection={{ md: "row", xs: "column" }}>
           <Flex justifyContent={{ xs: "center", md: "start" }} mb={{ xs: 4, md: 0 }}>
-            <Text fontSize={"14px"} color={"gray.500"}>
+            <Text color={"gray.500"}>
               Copyright {new Date().getFullYear()} &mdash; All gifs © of their respective owners
             </Text>
           </Flex>
-          <HStack spacing={8}>
+          <HStack spacing={6}>
             <HStack spacing={4} mb={{ xs: 4, md: 0 }}>
               <NextLink href={"/about"}>
-                <Link href={"/about"} fontSize={"14px"} color={"gray.600"}>
+                <Link href={"/about"} color={"gray.600"}>
                   About
                 </Link>
               </NextLink>
-              <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal fontSize={"14px"} color={"gray.600"}>
+              <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal color={"gray.600"}>
                 Contact
               </Link>
             </HStack>
-            <HStack spacing={4}>
-              <Text fontSize={"14px"} mr={2} color={"gray.500"}>
-                Powered by
-              </Text>
+            <Divider orientation="vertical" />
+            <HStack spacing={2}>
+              <Text color={"gray.500"}>Powered by</Text>
               <Link href={"https://giphy.com/"} isExternal target={"_blank"}>
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="60" viewBox="0 0 163.79999999999998 35">
+                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="54" viewBox="0 0 163.79999999999998 35">
                   <g fill="none" fillRule="evenodd">
                     <path d="M4 4h20v27H4z" fill="#000" />
                     <g fillRule="nonzero">
