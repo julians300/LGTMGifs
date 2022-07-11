@@ -4,7 +4,7 @@ import { Box } from "@chakra-ui/react";
 import GifList from "../../components/GifList/GifList";
 import { Gif } from "../../types/Gif";
 import Hero from "../../components/Hero/Hero";
-import allTags from "../../components/Header/alltags";
+import slugify from "slugify";
 
 interface Props {
   allGifs: Gif[];
@@ -24,8 +24,15 @@ const Tag = ({ allGifs, tag }: Props) => {
   );
 };
 
+interface Tag {
+  label: string;
+  slug: string;
+}
+
 export const getStaticPaths = async () => {
-  const paths = allTags.map((tag) => {
+  const res = await fetch(`https://lgtm-api.vercel.app/api/tags`);
+  const allTags: Tag[] = await res.json();
+  const paths = allTags.map((tag: Tag) => {
     return {
       params: { tag: tag.slug },
     };
@@ -37,10 +44,10 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/tags/${params!.tag}`);
+  const res = await fetch(`https://lgtm-api.vercel.app/api/gifs?tag=${(params!.tag as string).replace("-", " ")}`);
   const allGifs = await res.json();
   return {
-    props: { allGifs, tag: params!.tag },
+    props: { allGifs, tag: (params!.tag as string).replace("-", " ") },
   };
 };
 

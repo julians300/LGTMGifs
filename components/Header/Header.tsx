@@ -1,70 +1,117 @@
 import React from "react";
 import NextLink from "next/link";
-import { Box, Stack, Text, Flex, Link, Button, Icon, useColorMode, HStack, Divider, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Stack,
+  Text,
+  useClipboard,
+  Link,
+  Button,
+  Icon,
+  useColorMode,
+  HStack,
+  Image,
+  keyframes,
+  VisuallyHidden,
+} from "@chakra-ui/react";
 import Container from "../common/Container";
 import TagList from "./TagList";
 import { BiSun, BiMoon } from "react-icons/bi";
+import { SiMarkdown } from "react-icons/si";
+import { ImCheckmark } from "react-icons/im";
+import { Gif } from "../../types/Gif";
 
-const Header = () => {
+const spin = keyframes`
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg)}
+`;
+
+const Header = ({ randomGif }: { randomGif: Gif }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const randomUrl = `![${randomGif.name || "LGTM"}](${randomGif.url})`;
+  const { onCopy: onCopyMd, hasCopied: hasCopiedMd } = useClipboard(randomUrl);
+  const spinAnimation = `${spin} infinite 4s linear`;
   return (
     <Box>
       <Box borderBottomWidth={1} borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"}>
         <Container>
-          <HStack py={5} justifyContent={"space-between"}>
-            <Box>
-              <NextLink href="/">
-                <Link
-                  display="block"
-                  href="/"
-                  aria-label="LGTM Gifs, Back to homepage"
-                  rounded={"100px"}
-                  p={"2px 12px 2px 2px"}
-                >
-                  <Flex align={"center"}>
-                    <Box display={"inline"} mr={"12px"} rounded={"full"} fontSize={0}>
-                      <Image
-                        src="/images/lgtm_thumb.png"
-                        width={{ base: "26px", md: "40px" }}
-                        height={{ base: "26px", md: "40px" }}
-                        alt="LGTM Gifs"
-                      />
-                    </Box>
-                    <Text
-                      display={"inline"}
-                      fontSize={{ base: "16px", md: "20px" }}
-                      fontWeight={"700"}
-                      letterSpacing={"-.5px"}
-                    >
-                      LGTM Gifs
-                    </Text>
-                  </Flex>
-                </Link>
-              </NextLink>
-            </Box>
-            <Stack direction="row" spacing={4}>
+          <HStack py={6} justifyContent={"space-between"}>
+            <HStack spacing={12}>
               <Box>
-                <NextLink href={"/api/random"}>
-                  <Button
-                    as={Link}
-                    href={"/api/random"}
-                    isExternal
-                    colorScheme={"blue"}
+                <NextLink href="/">
+                  <Link
+                    display="block"
+                    href="/"
+                    aria-label="LGTM Gifs, Back to homepage"
+                    rounded={"100px"}
                     _hover={{ textDecor: "none" }}
-                    size={{ base: "xs", md: "md" }}
+                    transform="scale(1.85) translateX(6px)"
                   >
-                    Random Gif
-                  </Button>
+                    <VisuallyHidden>
+                      <Image src="/images/logo.png" width="28px" height="28px" alt="LGTM Gifs" pointerEvents="none" />
+                    </VisuallyHidden>
+                    <Box position="relative" aria-hidden={true}>
+                      <Image
+                        src="/images/logo-front.png"
+                        width="28px"
+                        height="28px"
+                        alt="LGTM Gifs"
+                        position="absolute"
+                        zIndex={9}
+                        pointerEvents="none"
+                      />
+
+                      <Box rounded={"full"} fontSize={0} _hover={{ animation: spinAnimation }}>
+                        <Image
+                          src="/images/logo-back.png"
+                          width="28px"
+                          height="28px"
+                          alt="LGTM Gifs"
+                          pointerEvents="none"
+                        />
+                      </Box>
+                    </Box>
+                    <VisuallyHidden>
+                      <Text
+                        display={"inline"}
+                        fontSize={{ base: "14px", md: "16px" }}
+                        fontWeight={"700"}
+                        letterSpacing={"-.5px"}
+                      >
+                        LGTM Gifs
+                      </Text>
+                    </VisuallyHidden>
+                  </Link>
                 </NextLink>
               </Box>
+            </HStack>
+            <Stack direction="row" spacing={3}>
               <Box>
-                <Divider orientation="vertical" />
-              </Box>
-              <Box>
-                <Button p={0} rounded={"full"} onClick={toggleColorMode} size={{ base: "xs", md: "md" }}>
-                  <Icon as={colorMode === "light" ? BiMoon : BiSun} />
+                <Button
+                  onClick={onCopyMd}
+                  colorScheme={"blue"}
+                  size="sm"
+                  rounded={12}
+                  transform={"translateY(0px)"}
+                  _hover={{ textDecor: "none", transform: "translateY(-2px)" }}
+                  style={{ background: "linear-gradient(12.93deg,#dd14d5,#4e47f5 55%,#3de8f3)" }}
+                  data-splitbee-event-copyrandom="random"
+                  data-splitbee-event="Copy"
+                >
+                  {hasCopiedMd ? (
+                    <>
+                      <Icon as={ImCheckmark} width={"20x"} height={"100%"} mr={1} />
+                      Copied
+                    </>
+                  ) : (
+                    <>
+                      Random Gif
+                      <Icon as={SiMarkdown} ml={2} />
+                    </>
+                  )}
                 </Button>
               </Box>
+
               <Box>
                 <NextLink href={"/submit"}>
                   <Button
@@ -72,19 +119,27 @@ const Header = () => {
                     href="https://airtable.com/shrZeMbytqjPxWMWa"
                     isExternal
                     colorScheme={"brand"}
-                    _hover={{ textDecor: "none" }}
-                    size={{ base: "xs", md: "md" }}
+                    _hover={{ textDecor: "none", bgColor: "#c64735" }}
+                    size="sm"
+                    rounded={3}
+                    border="1px solid #be5643"
+                    boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
                   >
                     Add a Gif
                   </Button>
                 </NextLink>
               </Box>
+              <Button p={0} variant="link" onClick={toggleColorMode}>
+                <Icon width="24px" as={colorMode === "light" ? BiMoon : BiSun} />
+              </Button>
             </Stack>
           </HStack>
         </Container>
       </Box>
-      <Box w={"100%"} overflowX={"auto"}>
-        <TagList />
+      <Box py={4} borderBottomWidth={1} borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"} overflowX="auto">
+        <Container>
+          <TagList />
+        </Container>
       </Box>
     </Box>
   );

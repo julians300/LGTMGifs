@@ -2,11 +2,9 @@ export interface Gif {
   id: string;
   name: string;
   slug: string;
-  category: string;
-  thumbnail: {
-    url: string;
-    height: number;
-    width: number;
-  };
+  // category: string;
+  height: number;
+  width: number;
+  url: string;
   tags: string[];
 }
