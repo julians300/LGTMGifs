@@ -19,14 +19,16 @@ import TagList from "./TagList";
 import { BiSun, BiMoon } from "react-icons/bi";
 import { SiMarkdown } from "react-icons/si";
 import { ImCheckmark } from "react-icons/im";
+import { Gif } from "../../types/Gif";
 
 const spin = keyframes`
   from {transform: rotate(0deg);}
   to {transform: rotate(360deg)}
 `;
 
-const Header = ({ randomUrl }: { randomUrl: string }) => {
+const Header = ({ randomGif }: { randomGif: Gif }) => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const randomUrl = `![${randomGif.name || "LGTM"}](${randomGif.url})`;
   const { onCopy: onCopyMd, hasCopied: hasCopiedMd } = useClipboard(randomUrl);
   const spinAnimation = `${spin} infinite 4s linear`;
   return (

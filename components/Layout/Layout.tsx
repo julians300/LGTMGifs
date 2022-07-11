@@ -16,10 +16,18 @@ const getRandomGif = async (): Promise<Gif> => {
 
 const Layout = ({ children }: Props) => {
   const { colorMode } = useColorMode();
-  const [randomGifUrl, setRandomGifUrl] = useState("");
+  const [randomGifUrl, setRandomGifUrl] = useState<Gif>({
+    id: "",
+    height: 0,
+    width: 0,
+    name: "",
+    slug: "",
+    url: "",
+    tags: [],
+  });
   useEffect(() => {
     getRandomGif().then((data) => {
-      setRandomGifUrl(data.url);
+      setRandomGifUrl(data);
     });
   }, []);
   return (
@@ -35,7 +43,7 @@ const Layout = ({ children }: Props) => {
         overflow="hidden"
       >
         <Stack spacing={8}>
-          <Header randomUrl={randomGifUrl} />
+          <Header randomGif={randomGifUrl} />
           <Container>{children}</Container>
           <Footer />
         </Stack>
