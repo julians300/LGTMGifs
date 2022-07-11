@@ -16,26 +16,27 @@ const Footer = () => {
       bottom={0}
     >
       <Container>
-        <Flex justifyContent={"space-between"} flexDirection={{ md: "row", xs: "column" }}>
+        <Flex
+          justifyContent={"space-between"}
+          flexDirection={{ md: "row", xs: "column" }}
+          color={colorMode === "light" ? "#222222" : "gray.500"}
+          fontWeight={600}
+        >
           <Flex justifyContent={{ xs: "center", md: "start" }} mb={{ xs: 4, md: 0 }}>
-            <Text color={"gray.500"}>
-              Copyright {new Date().getFullYear()} &mdash; All gifs © of their respective owners
-            </Text>
+            <Text>Copyright {new Date().getFullYear()} &mdash; All gifs © of their respective owners</Text>
           </Flex>
           <HStack spacing={6}>
             <HStack spacing={4} mb={{ xs: 4, md: 0 }}>
               <NextLink href={"/about"}>
-                <Link href={"/about"} color={"gray.600"}>
-                  About
-                </Link>
+                <Link href={"/about"}>About</Link>
               </NextLink>
-              <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal color={"gray.600"}>
+              <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal>
                 Contact
               </Link>
             </HStack>
-            <Divider orientation="vertical" />
+            <Divider orientation="vertical" borderColor={colorMode === "light" ? "#222222" : "gray.500"} />
             <HStack spacing={2}>
-              <Text color={"gray.500"}>Powered by</Text>
+              <Text>Powered by</Text>
               <Link href={"https://giphy.com/"} isExternal target={"_blank"}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="14" width="54" viewBox="0 0 163.79999999999998 35">
                   <g fill="none" fillRule="evenodd">

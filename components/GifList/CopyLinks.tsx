@@ -1,8 +1,9 @@
 import React from "react";
-import { Button, Icon, useClipboard, Tooltip, HStack, useColorMode } from "@chakra-ui/react";
+import { Button, Icon, useClipboard, Tooltip, HStack, useColorMode, Box } from "@chakra-ui/react";
 import { SiMarkdown } from "react-icons/si";
 import { HiLink } from "react-icons/hi";
 import { ImCheckmark } from "react-icons/im";
+import { useReward } from "react-rewards";
 
 interface Props {
   url: string;
@@ -12,22 +13,39 @@ interface Props {
 
 const CopyLinks = ({ url, name, slug }: Props) => {
   const { colorMode } = useColorMode();
+  const rewardType = Math.random() > 0.5 ? "confetti" : "balloons";
+  const { reward: rewardMd } = useReward(`${slug}-md-party`, rewardType, {
+    position: "absolute",
+    lifetime: 150,
+    startVelocity: rewardType === "balloons" ? 10 : 35,
+    elementCount: rewardType === "balloons" ? 20 : 50,
+  });
+  const { reward: rewardLink } = useReward(`${slug}-link-party`, rewardType, {
+    position: "absolute",
+    lifetime: 150,
+    startVelocity: rewardType === "balloons" ? 10 : 35,
+    elementCount: rewardType === "balloons" ? 20 : 50,
+  });
   const copyMarkdownValue = `![${name || "LGTM"}](${url})`;
   const copyURLValue = url;
   const { onCopy: onCopyMD, hasCopied: hasCopiedMD } = useClipboard(copyMarkdownValue);
   const { onCopy: onCopyURL, hasCopied: hasCopiedURL } = useClipboard(copyURLValue);
   return (
-    <HStack spacing={0}>
+    <HStack spacing={0} pos="relative">
       <Tooltip label={hasCopiedMD ? "Copied" : "Copy Markdown"} placement="top">
         <Button
-          display={"inline"}
-          onClick={onCopyMD}
+          onClick={() => {
+            onCopyMD();
+            rewardMd();
+          }}
           size={"xs"}
           variant={"ghost"}
           aria-label={`Copy markdown for ${name} gif`}
-          data-splitbee-event-copyMd={slug}
+          data-splitbee-event-copymd={slug}
           data-splitbee-event="Copy"
         >
+          <Box as="span" zIndex={99} id={`${slug}-md-party`} />
+
           {hasCopiedMD ? (
             <Icon
               as={ImCheckmark}
@@ -48,14 +66,17 @@ const CopyLinks = ({ url, name, slug }: Props) => {
       </Tooltip>
       <Tooltip label={hasCopiedURL ? "Copied" : "Copy URL"} placement="top">
         <Button
-          display={"inline"}
-          onClick={onCopyURL}
+          onClick={() => {
+            onCopyURL();
+            rewardLink();
+          }}
           size={"xs"}
           variant={"ghost"}
           aria-label={`Copy image url for ${name} gif`}
-          data-splitbee-event-copyUrl={slug}
+          data-splitbee-event-copyurl={slug}
           data-splitbee-event="Copy"
         >
+          <Box as="span" zIndex={99} id={`${slug}-link-party`} />
           {hasCopiedURL ? (
             <Icon
               as={ImCheckmark}

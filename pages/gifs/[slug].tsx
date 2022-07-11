@@ -11,6 +11,7 @@ import {
   Link,
   SimpleGrid,
   Tooltip,
+  Wrap,
 } from "@chakra-ui/react";
 import Tag from "../../components/common/Tag";
 import { Gif } from "../../types/Gif";
@@ -18,7 +19,6 @@ import { SiMarkdown } from "react-icons/si";
 import { HiLink } from "react-icons/hi";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import Head from "next/head";
-import { GIFS_PER_PAGE } from "../../constants/constants";
 import getVideoUrl from "../../utils/getVideoUrl";
 
 interface Props {
@@ -26,8 +26,8 @@ interface Props {
 }
 
 const SingleGif = ({ gif }: Props) => {
-  const copyMarkdownValue = `![${gif.name || "LGTM"}](${gif.thumbnail.url})`;
-  const copyURLValue = gif.thumbnail.url;
+  const copyMarkdownValue = `![${gif.name || "LGTM"}](${gif.url})`;
+  const copyURLValue = gif.url;
   const { onCopy: onCopyMD, hasCopied: hasCopiedMD } = useClipboard(copyMarkdownValue);
   const { onCopy: onCopyURL, hasCopied: hasCopiedURL } = useClipboard(copyURLValue);
   const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug}/&text=LGTM+${gif.name}`;
@@ -66,7 +66,7 @@ const SingleGif = ({ gif }: Props) => {
                   <Button
                     variant={"outline"}
                     onClick={onCopyMD}
-                    data-splitbee-event-copyMd={gif.slug}
+                    data-splitbee-event-copymd={gif.slug}
                     data-splitbee-event="Copy"
                   >
                     <Icon as={SiMarkdown} mr={2} /> {hasCopiedMD ? "Copied" : "Copy Markdown"}
@@ -74,7 +74,7 @@ const SingleGif = ({ gif }: Props) => {
                   <Button
                     variant={"outline"}
                     onClick={onCopyURL}
-                    data-splitbee-event-copyUrl={gif.slug}
+                    data-splitbee-event-copyurl={gif.slug}
                     data-splitbee-event="Copy"
                   >
                     <Icon as={HiLink} mr={2} /> {hasCopiedURL ? "Copied" : "Copy Direct Link"}
@@ -84,18 +84,18 @@ const SingleGif = ({ gif }: Props) => {
             </Box>
             <Box>
               <CardWrap>
-                <Box mb={-4}>
-                  <Stack isInline spacing={4} shouldWrapChildren flexWrap={"wrap"}>
+                <Box>
+                  <Wrap spacing={4}>
                     {gif.tags &&
                       gif.tags.map((tag) => {
                         const slug = slugify(tag.toLowerCase());
                         return (
-                          <Box mb={4} key={slug}>
+                          <Box key={slug}>
                             <Tag name={tag} slug={slug} />
                           </Box>
                         );
                       })}
-                  </Stack>
+                  </Wrap>
                 </Box>
               </CardWrap>
             </Box>
@@ -137,18 +137,12 @@ const CardWrap = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 };
 
 export const getStaticPaths = async () => {
-  const totalRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/total/`);
-  const total = await totalRes.json();
-  const pageCount = Math.ceil(total / GIFS_PER_PAGE);
   const allGifs: Gif[] = [];
-
-  for (let i = 1; i <= pageCount; i++) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/all/${i}`);
-    const gifs: Gif[] = await res.json();
-    gifs.forEach((gif) => {
-      allGifs.push(gif);
-    });
-  }
+  const res = await fetch(`https://lgtm-api.vercel.app/api/gifs`);
+  const gifs: Gif[] = await res.json();
+  gifs.forEach((gif) => {
+    allGifs.push(gif);
+  });
 
   const paths = allGifs.map((gif) => {
     return { params: { slug: gif.slug } };
@@ -161,7 +155,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/gifs/${params!.slug}`);
+  const res = await fetch(`https://lgtm-api.vercel.app/api/gifs/${params!.slug}`);
   const gif = await res.json();
   return {
     props: { gif },

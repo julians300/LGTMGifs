@@ -13,7 +13,7 @@ const Hero = ({ h1, sub }: Props) => {
         <Text as={"h1"} fontWeight={700} lineHeight={1.1} fontSize={{ md: "2.2rem", sm: "20px" }}>
           {h1}
         </Text>
-        <Text fontWeight={400} lineHeight={1.1} fontSize={{ md: "1rem", sm: "15px" }}>
+        <Text fontWeight={400} color="gray.500" lineHeight={1.1} fontSize={{ md: "1rem", sm: "15px" }}>
           {sub}
         </Text>
       </Stack>

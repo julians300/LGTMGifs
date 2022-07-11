@@ -16,20 +16,12 @@ const headerTags = [
     slug: "computer",
   },
   {
-    name: "90s",
-    slug: "90s",
-  },
-  {
     name: "Smile",
     slug: "smile",
   },
   {
     name: "Eyes",
     slug: "eyes",
-  },
-  {
-    name: "Nod",
-    slug: "nod",
   },
   {
     name: "Nice",

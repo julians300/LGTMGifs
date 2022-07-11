@@ -18,7 +18,14 @@ const GifItem = ({ gif }: Props) => {
         <NextLink href={`/gifs/${gif.slug}`}>
           <Link href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={4}>
             <AspectRatio ratio={1 / 1.2}>
-              <Box m={0} border={0} rounded={4} w="100%" height="100%" bg="gray.100">
+              <Box
+                m={0}
+                border={0}
+                rounded={4}
+                w="100%"
+                height="100%"
+                bg={colorMode === "light" ? "grey.100" : "gray.700"}
+              >
                 <Box
                   as="video"
                   src={videoUrl}
@@ -49,7 +56,7 @@ const GifItem = ({ gif }: Props) => {
           </Text>
         </Box>
         <Box>
-          <CopyLinks url={gif.thumbnail.url} name={gif.name} slug={gif.slug} />
+          <CopyLinks url={gif.url} name={gif.name} slug={gif.slug} />
         </Box>
       </Flex>
     </Stack>

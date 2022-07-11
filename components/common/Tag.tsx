@@ -20,6 +20,7 @@ const Tag = ({ name, slug }: Props) => {
           rounded={3}
           whiteSpace={"nowrap"}
           bg={colorMode === "light" ? "#fff3c6" : "#343b42"}
+          fontSize="14px"
         >
           <>
             <Text as={"span"} color="red.500" mr={1}>

@@ -52,14 +52,28 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
           <ButtonGroup spacing={4}>
             {prevLink && (
               <NextLink href={prevLink}>
-                <Button href={prevLink} as={Link} colorScheme="brand" _hover={{ textDecor: "none" }}>
+                <Button
+                  href={prevLink}
+                  as={Link}
+                  colorScheme="brand"
+                  _hover={{ textDecor: "none", bgColor: "#c64735" }}
+                  border="1px solid #be5643"
+                  boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
+                >
                   Previous
                 </Button>
               </NextLink>
             )}
             {nextLink && (
               <NextLink href={nextLink}>
-                <Button href={nextLink} as={Link} colorScheme="brand" _hover={{ textDecor: "none" }}>
+                <Button
+                  href={nextLink}
+                  as={Link}
+                  colorScheme="brand"
+                  _hover={{ textDecor: "none", bgColor: "#c64735" }}
+                  border="1px solid #be5643"
+                  boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
+                >
                   Next
                 </Button>
               </NextLink>
