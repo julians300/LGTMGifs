@@ -37,14 +37,10 @@ const Layout = ({ children }: Props) => {
         <meta name="description" content="Pull Request Approval Gifs" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Box
-        backgroundColor={colorMode === "light" ? "#ffffff" : "#14171b"}
-        borderTop={"2px solid #e65942"}
-        overflow="hidden"
-      >
+      <Box backgroundColor={colorMode === "light" ? "#ffffff" : "#14171b"} borderTop={"2px solid #e65942"}>
         <Stack spacing={8}>
           <Header randomGif={randomGifUrl} />
-          <Container>{children}</Container>
+          <Container overflow="hidden">{children}</Container>
           <Footer />
         </Stack>
       </Box>
