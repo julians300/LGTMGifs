@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import NextLink from "next/link";
 import { Box, AspectRatio, Text, Stack, Flex, Link, useColorMode } from "@chakra-ui/react";
 import CopyLinks from "./CopyLinks";
 import { Gif } from "../../types/Gif";
-import getVideoUrl from "../../utils/getVideoUrl";
+// import getVideoUrl from "../../utils/getVideoUrl";
 
 interface Props {
   gif: Gif;
@@ -11,7 +11,8 @@ interface Props {
 
 const GifItem = ({ gif }: Props) => {
   const { colorMode } = useColorMode();
-  const videoUrl = getVideoUrl(gif);
+  // const videoUrl = getVideoUrl(gif);
+  const videoUrl = gif;
   return (
     <Stack>
       <Box transition={".3s ease all"} _hover={{ transform: "scale(1.04)" }}>
@@ -26,7 +27,8 @@ const GifItem = ({ gif }: Props) => {
                 height="100%"
                 bg={colorMode === "light" ? "grey.100" : "gray.700"}
               >
-                <Box
+                <Box as="img" h="full" w="full" objectFit="cover" src={gif.url} />
+                {/* <Box
                   as="video"
                   src={videoUrl}
                   autoPlay={true}
@@ -37,7 +39,7 @@ const GifItem = ({ gif }: Props) => {
                   w="100%"
                   objectFit="cover"
                   onError={() => {}}
-                ></Box>
+                ></Box> */}
               </Box>
             </AspectRatio>
           </Link>
