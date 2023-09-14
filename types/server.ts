@@ -5,6 +5,7 @@ export interface Thumbnail {
   width: number;
   height: number;
   url: string;
+  smallUrl: string;
   filename: string;
   size: number;
   type: string;

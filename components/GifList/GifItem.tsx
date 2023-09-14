@@ -27,10 +27,10 @@ const GifItem = ({ gif }: Props) => {
                 height="100%"
                 bg={colorMode === "light" ? "grey.100" : "gray.700"}
               >
-                <Box as="img" h="full" w="full" objectFit="cover" src={gif.url} />
-                {/* <Box
+                {/* <Box as="img" h="full" w="full" objectFit="cover" src={gif.smallUrl} /> */}
+                <Box
                   as="video"
-                  src={videoUrl}
+                  src={gif.smallUrl}
                   autoPlay={true}
                   loop={true}
                   muted={true}
@@ -39,7 +39,7 @@ const GifItem = ({ gif }: Props) => {
                   w="100%"
                   objectFit="cover"
                   onError={() => {}}
-                ></Box> */}
+                ></Box>
               </Box>
             </AspectRatio>
           </Link>

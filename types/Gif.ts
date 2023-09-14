@@ -6,5 +6,6 @@ export interface Gif {
   height: number;
   width: number;
   url: string;
+  smallUrl: string;
   tags: string[];
 }
