@@ -24,6 +24,7 @@ const Layout = ({ children }: Props) => {
     slug: "",
     url: "",
     tags: [],
+    smallUrl: "",
   });
   useEffect(() => {
     getRandomGif().then((data) => {
