@@ -33,7 +33,6 @@ const SingleGif = ({ gif }: Props) => {
   const twitterShareURL = `http://twitter.com/share?url=https://www.lgtmgifs.com/gifs/${gif.slug}/&text=LGTM+${gif.name}`;
   const facebookShareURL = `http://www.facebook.com/sharer/sharer.php?u=https://www.lgtmgifs.com/gifs/${gif.slug}`;
   const pageTitle = `${gif.name} | LGTM Gifs`;
-  const videoUrl = getVideoUrl(gif);
   return (
     <>
       <Head>
@@ -44,9 +43,10 @@ const SingleGif = ({ gif }: Props) => {
           <Stack>
             <Box>
               <CardWrap>
-                <Box
+                <Box as="img" h="full" w="full" objectFit="cover" src={gif.url} />
+                {/* <Box
                   as="video"
-                  src={videoUrl}
+                  src={gif.smallUrl}
                   autoPlay={true}
                   loop={true}
                   muted={true}
@@ -55,7 +55,7 @@ const SingleGif = ({ gif }: Props) => {
                   w="100%"
                   objectFit="cover"
                   onError={() => {}}
-                ></Box>
+                ></Box> */}
               </CardWrap>
             </Box>
           </Stack>
