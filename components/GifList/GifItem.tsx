@@ -35,6 +35,7 @@ const GifItem = ({ gif }: Props) => {
                   loop={true}
                   muted={true}
                   playsInline={true}
+                  disableRemotePlayback={true}
                   h="100%"
                   w="100%"
                   objectFit="cover"
