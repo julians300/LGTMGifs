@@ -7,5 +7,6 @@ export interface Gif {
   width: number;
   url: string;
   smallUrl: string;
+  mp4Url: string;
   tags: string[];
 }
