@@ -25,6 +25,7 @@ const Layout = ({ children }: Props) => {
     url: "",
     tags: [],
     smallUrl: "",
+    mp4Url: "",
   });
   useEffect(() => {
     getRandomGif().then((data) => {
