@@ -33,6 +33,7 @@ const Footer = () => {
               <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal>
                 Contact
               </Link>
+              <Link href={"/tags"}>All Tags</Link>
             </HStack>
             <Divider orientation="vertical" borderColor={colorMode === "light" ? "#222222" : "gray.500"} />
             <HStack spacing={2}>

@@ -21,7 +21,7 @@ const Home = ({ allGifs }: Props) => {
       <Stack spacing={8}>
         <Hero
           h1={"The Perfect Pull Request Approval Responses"}
-          sub={"Say more with gifs and level up your pull request approvals."}
+          sub={"Looks good to me! Say more with gifs and level up your pull request approvals."}
         />
         <GifList gifs={allGifs} nextLink="/page/2" />
       </Stack>

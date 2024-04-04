@@ -1,10 +1,10 @@
 import type { GetStaticProps } from "next";
 import Head from "next/head";
-import { Box } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import GifList from "../../components/GifList/GifList";
 import { Gif } from "../../types/Gif";
 import Hero from "../../components/Hero/Hero";
-import slugify from "slugify";
+import allTags from "../../components/Header/alltags";
 
 interface Props {
   allGifs: Gif[];
@@ -12,14 +12,19 @@ interface Props {
 }
 
 const Tag = ({ allGifs, tag }: Props) => {
-  const title = `${tag} | LGTM Gifs | Pull request approval gifs`;
+  const capTag = allTags.find((t) => t.slug === tag)?.name || "";
+  const tagDesc = allTags.find((t) => t.slug === tag)?.desc || "Level up your pull request approvals with LGTM Gifs.";
+  const title = `${capTag} LGTM Gifs | Pull Request Approval Gifs`;
   return (
     <Box>
       <Head>
         <title>{title}</title>
+        <meta name="description" content={tagDesc} />
       </Head>
-      <Hero h1={`#${tag}`} sub={"Level up your pull request approvals with LGTM Gifs."} />
-      <GifList gifs={allGifs} />
+      <Stack spacing={8}>
+        <Hero h1={`${capTag}`} sub={tagDesc} />
+        <GifList gifs={allGifs} />
+      </Stack>
     </Box>
   );
 };
@@ -47,7 +52,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const res = await fetch(`https://lgtm-api.vercel.app/api/gifs?tag=${(params!.tag as string).replace("-", " ")}`);
   const allGifs = await res.json();
   return {
-    props: { allGifs, tag: (params!.tag as string).replace("-", " ") },
+    props: { allGifs, tag: params!.tag },
   };
 };
 

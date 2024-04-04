@@ -8,8 +8,8 @@ interface Props {
 
 const Hero = ({ h1, sub }: Props) => {
   return (
-    <Box py={6}>
-      <Stack spacing={4}>
+    <Box>
+      <Stack spacing={3}>
         <Text as={"h1"} fontWeight={700} lineHeight={1.1} fontSize={{ md: "2.2rem", sm: "20px" }}>
           {h1}
         </Text>

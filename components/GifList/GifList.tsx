@@ -3,6 +3,8 @@ import NextLink from "next/link";
 import { Grid, Box, Stack, Button, Flex, ButtonGroup, Link } from "@chakra-ui/react";
 import GifItem from "./GifItem";
 import { Gif } from "../../types/Gif";
+// import { Masonry } from "@mui/lab";
+// import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 interface Props {
   gifs: Gif[];
@@ -41,11 +43,15 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
         }}
         gap={{ base: 4, xl: 5 }}
       >
+        {/* <ResponsiveMasonry columnsCountBreakPoints={{ 350: 3, 900: 5, 1200: 6 }}> */}
+        {/* <Masonry> */}
         {gifs.map((gif) => (
           <Box key={gif.id}>
             <GifItem gif={gif} />
           </Box>
         ))}
+        {/* </Masonry>
+      </ResponsiveMasonry> */}
       </Grid>
       <Box textAlign={"right"}>
         <Flex justifyContent={"right"}>
