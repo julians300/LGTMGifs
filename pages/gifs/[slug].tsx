@@ -38,7 +38,10 @@ const SingleGif = ({ gif }: Props) => {
       <Head>
         <title>{pageTitle}</title>
       </Head>
-      <Box w={"100%"} maxWidth={"1260px"} px={{ md: "40px", base: 0 }} m={"auto"}>
+      <Stack w={"100%"} maxWidth={"1260px"} px={{ md: "40px", base: 0 }} m={"auto"}>
+        <Text as="h1" fontWeight={600} fontSize="20px">
+          {gif.name} LGTM
+        </Text>
         <SimpleGrid columns={{ md: 2, base: 1 }} spacing={8}>
           <Stack>
             <Box>
@@ -122,7 +125,7 @@ const SingleGif = ({ gif }: Props) => {
             </Box>
           </Stack>
         </SimpleGrid>
-      </Box>
+      </Stack>
     </>
   );
 };
