@@ -15,11 +15,12 @@ import {
   VisuallyHidden,
 } from "@chakra-ui/react";
 import Container from "../common/Container";
-import TagList from "./TagList";
+// import TagList from "./TagList";
 import { BiSun, BiMoon } from "react-icons/bi";
 import { SiMarkdown } from "react-icons/si";
 import { ImCheckmark } from "react-icons/im";
 import { Gif } from "../../types/Gif";
+import { FaRegPaperPlane } from "react-icons/fa";
 
 const spin = keyframes`
   from {transform: rotate(0deg);}
@@ -91,7 +92,7 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
                   onClick={onCopyMd}
                   colorScheme={"blue"}
                   size="sm"
-                  rounded={12}
+                  rounded={6}
                   transform={"translateY(0px)"}
                   _hover={{ textDecor: "none", transform: "translateY(-2px)" }}
                   style={{ background: "linear-gradient(12.93deg,#dd14d5,#4e47f5 55%,#3de8f3)" }}
@@ -121,10 +122,11 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
                     colorScheme={"brand"}
                     _hover={{ textDecor: "none", bgColor: "#c64735" }}
                     size="sm"
-                    rounded={3}
+                    rounded={6}
                     border="1px solid #be5643"
                     boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
                   >
+                    <Icon as={FaRegPaperPlane} mr={2} />
                     Add a Gif
                   </Button>
                 </NextLink>
@@ -134,11 +136,6 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
               </Button>
             </Stack>
           </HStack>
-        </Container>
-      </Box>
-      <Box py={4} borderBottomWidth={1} borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"} overflowX="auto">
-        <Container>
-          <TagList />
         </Container>
       </Box>
     </Box>

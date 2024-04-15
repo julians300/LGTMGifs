@@ -9,7 +9,7 @@ const Container = ({ children, ...restProps }: Props) => {
   return (
     <Box
       width={"100%"}
-      // maxWidth={"1600px"}
+      maxWidth={"1800px"}
       margin={"auto"}
       px={{ xl: "64px", lg: "40px", md: "20px", sm: "16px", base: "12px" }}
       {...restProps}

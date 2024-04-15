@@ -1,7 +1,7 @@
 import React from "react";
 import {
   Box,
-  HStack,
+  Text,
   useColorMode,
   Icon,
   Tooltip,
@@ -16,6 +16,7 @@ import {
   Wrap,
   WrapItem,
   VisuallyHidden,
+  Stack,
 } from "@chakra-ui/react";
 import Tag from "../common/Tag";
 import tags from "./headertags";
@@ -26,8 +27,11 @@ const TagList = () => {
   const { colorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"}>
-      <HStack spacing={3} position="relative" pr={"50px"} w="100%">
+    <Box borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"} display={{ base: "none", lg: "block" }}>
+      <Stack spacing={3} position="relative" pr={"50px"} w="100%">
+        <Text as="h2" fontSize="18px" fontWeight={600}>
+          Tags
+        </Text>
         {tags.map((tag, index) => (
           <Box key={index}>
             <Tag name={tag.name} slug={tag.slug} />
@@ -44,7 +48,7 @@ const TagList = () => {
                 rounded={3}
                 lineHeight={".825rem"}
                 whiteSpace={"nowrap"}
-                backgroundColor={colorMode === "light" ? "#fff3c6" : "#343b42"}
+                backgroundColor={colorMode === "light" ? "#fff7db" : "#242628"}
               >
                 <Icon as={BsThreeDots} color={colorMode === "light" ? "#545965" : "#ffffff"} />
                 <VisuallyHidden>All Tags</VisuallyHidden>
@@ -52,7 +56,7 @@ const TagList = () => {
             </Box>
           </Tooltip>
         </Box>
-      </HStack>
+      </Stack>
 
       <Modal isOpen={isOpen} onClose={onClose} size={"xl"} isCentered>
         <ModalOverlay />

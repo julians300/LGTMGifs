@@ -41,7 +41,7 @@ const GifList = ({ gifs, nextLink, prevLink }: Props) => {
           sm: "repeat(2, minmax(0, 50%))",
           base: "repeat(2, minmax(0, 50%))",
         }}
-        gap={{ base: 4, xl: 5 }}
+        gap={{ base: 2, xl: 3 }}
       >
         {/* <ResponsiveMasonry columnsCountBreakPoints={{ 350: 3, 900: 5, 1200: 6 }}> */}
         {/* <Masonry> */}

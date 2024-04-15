@@ -39,6 +39,26 @@ const headerTags = [
     name: "Clap",
     slug: "clap",
   },
+  {
+    name: "Seinfeld",
+    slug: "seinfeld",
+  },
+  {
+    name: "Retro",
+    slug: "retro",
+  },
+  {
+    name: "Perfect",
+    slug: "perfect",
+  },
+  {
+    name: "Friends",
+    slug: "friends",
+  },
+  {
+    name: "Kid",
+    slug: "kid",
+  },
 ];
 
 export default headerTags;

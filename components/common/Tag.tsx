@@ -10,17 +10,20 @@ interface Props {
 const Tag = ({ name, slug }: Props) => {
   const { colorMode } = useColorMode();
   return (
-    <Box transition={".15s ease all"} transform={"translateY(0px)"} _hover={{ transform: "translateY(-2px)" }}>
+    <Box data-splitbee-event-clickTag={name}>
       <NextLink href={`/tags/${slug}`}>
         <Link
-          _hover={{ textDecoration: "none" }}
+          _hover={{ textDecoration: "none", transform: "scale(1.05)" }}
           href={`/tags/${slug}`}
-          py={1}
+          py={0.5}
           px={2}
           rounded={3}
+          display="inline-block"
           whiteSpace={"nowrap"}
-          bg={colorMode === "light" ? "#fff3c6" : "#343b42"}
+          bg={colorMode === "light" ? "#fff7db" : "#242628"}
           fontSize="14px"
+          transition={".15s ease all"}
+          transform={"scale(1)"}
         >
           <>
             <Text as={"span"} color="red.500" mr={1}>

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
-import { Stack, useColorMode, Box } from "@chakra-ui/react";
+import { Stack, useColorMode, Box, Grid } from "@chakra-ui/react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Container from "../common/Container";
 import { Gif } from "../../types/Gif";
+import TagList from "../Header/TagList";
 
 interface Props {
   children: JSX.Element;
@@ -39,10 +40,21 @@ const Layout = ({ children }: Props) => {
         <meta name="description" content="Pull Request Approval Gifs" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Box backgroundColor={colorMode === "light" ? "#ffffff" : "#14171b"} borderTop={"2px solid #e65942"}>
+      <Box backgroundColor={colorMode === "light" ? "#ffffff" : "#14171b"} borderTop={"2px solid #e65942"} w="full">
         <Stack spacing={8}>
           <Header randomGif={randomGifUrl} />
-          <Container overflow="hidden">{children}</Container>
+          <Box>
+            <Container>
+              <Grid gridTemplateColumns={{ base: "1fr", lg: "180px 1fr" }}>
+                <Box>
+                  <Box position="sticky" top="20px">
+                    <TagList />
+                  </Box>
+                </Box>
+                <Box>{children}</Box>
+              </Grid>
+            </Container>
+          </Box>
           <Footer />
         </Stack>
       </Box>
