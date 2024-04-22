@@ -1,10 +1,9 @@
 import React from "react";
 import NextLink from "next/link";
-import { Grid, Box, Stack, Button, Flex, ButtonGroup, Link } from "@chakra-ui/react";
+import { Box, Stack, Button, Flex, ButtonGroup, Link, VisuallyHidden } from "@chakra-ui/react";
 import GifItem from "./GifItem";
 import { Gif } from "../../types/Gif";
-// import { Masonry } from "@mui/lab";
-// import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
 interface Props {
   gifs: Gif[];
@@ -13,46 +12,29 @@ interface Props {
 }
 
 const GifList = ({ gifs, nextLink, prevLink }: Props) => {
+  const [isLoaded, setIsLoaded] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
     <Stack spacing={{ base: 2, md: 4, lg: 8 }}>
-      {/* <Box>
-        <Menu>
-          <MenuButton as={Button} rightIcon="chevron-down">
-            Trending
-          </MenuButton>
-          <MenuList>
-            <MenuItem as="a" href="#">
-              Trending
-            </MenuItem>
-            <MenuItem as="a" href="#">
-              Latest
-            </MenuItem>
-            <MenuItem as="a" href="#">
-              Popular
-            </MenuItem>
-          </MenuList>
-        </Menu>
-      </Box> */}
-      <Grid
-        templateColumns={{
-          xl: "repeat(6, minmax(0, 16.66%))",
-          lg: "repeat(5, minmax(0, 20%))",
-          md: "repeat(3, minmax(0, 33.333%))",
-          sm: "repeat(2, minmax(0, 50%))",
-          base: "repeat(2, minmax(0, 50%))",
-        }}
-        gap={{ base: 2, xl: 3 }}
-      >
-        {/* <ResponsiveMasonry columnsCountBreakPoints={{ 350: 3, 900: 5, 1200: 6 }}> */}
-        {/* <Masonry> */}
-        {gifs.map((gif) => (
-          <Box key={gif.id}>
-            <GifItem gif={gif} />
-          </Box>
-        ))}
-        {/* </Masonry>
-      </ResponsiveMasonry> */}
-      </Grid>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 2, 900: 3, 1200: 4 }}>
+        <Masonry gutter="16px">
+          {gifs.map((gif) => (
+            <Box key={gif.id}>
+              {isLoaded ? (
+                <GifItem gif={gif} />
+              ) : (
+                <VisuallyHidden>
+                  <GifItem gif={gif} />
+                </VisuallyHidden>
+              )}
+            </Box>
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
       <Box textAlign={"right"}>
         <Flex justifyContent={"right"}>
           <ButtonGroup spacing={4}>

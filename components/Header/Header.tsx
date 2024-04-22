@@ -34,7 +34,7 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
   const spinAnimation = `${spin} infinite 4s linear`;
   return (
     <Box>
-      <Box borderBottomWidth={1} borderColor={colorMode === "light" ? "#f9f9f9" : "#333a44"}>
+      <Box>
         <Container>
           <HStack py={6} justifyContent={"space-between"}>
             <HStack spacing={12}>

@@ -27,7 +27,7 @@ const CopyLinks = ({ url, name, slug }: Props) => {
           data-splitbee-event-copymd={slug}
           data-splitbee-event="Copy"
           rounded="full"
-          bg="rgba(0,0,0,0.45)"
+          bg="rgba(0,0,0,0.65)"
           p={2}
         >
           <Box as="span" zIndex={99} id={`${slug}-md-party`} />
@@ -38,14 +38,14 @@ const CopyLinks = ({ url, name, slug }: Props) => {
               width={"24x"}
               height={"100%"}
               mx={1}
-              color={colorMode === "light" ? "gray.200" : "gray.400"}
+              color={colorMode === "light" ? "gray.100" : "gray.400"}
             />
           ) : (
             <Icon
               as={SiMarkdown}
               width={"24px"}
               height={"100%"}
-              color={colorMode === "light" ? "gray.200" : "gray.400"}
+              color={colorMode === "light" ? "gray.100" : "gray.400"}
             />
           )}
         </Button>
@@ -59,7 +59,7 @@ const CopyLinks = ({ url, name, slug }: Props) => {
           data-splitbee-event-copyurl={slug}
           data-splitbee-event="Copy"
           rounded="full"
-          bg="rgba(0,0,0,0.45)"
+          bg="rgba(0,0,0,0.65)"
           p={2}
         >
           <Box as="span" zIndex={99} id={`${slug}-link-party`} />
@@ -69,10 +69,10 @@ const CopyLinks = ({ url, name, slug }: Props) => {
               width={"24x"}
               height={"100%"}
               mx={1}
-              color={colorMode === "light" ? "gray.200" : "gray.400"}
+              color={colorMode === "light" ? "gray.100" : "gray.400"}
             />
           ) : (
-            <Icon as={HiLink} width={"24px"} height={"100%"} color={colorMode === "light" ? "gray.200" : "gray.400"} />
+            <Icon as={HiLink} width={"24px"} height={"100%"} color={colorMode === "light" ? "gray.100" : "gray.400"} />
           )}
         </Button>
       </Tooltip>
