@@ -1,6 +1,6 @@
 import React from "react";
 import NextLink from "next/link";
-import { Box, AspectRatio, Text, Stack, Flex, Link, useColorMode, Center } from "@chakra-ui/react";
+import { Box, AspectRatio, Link, useColorMode } from "@chakra-ui/react";
 import CopyLinks from "./CopyLinks";
 import { Gif } from "../../types/Gif";
 // import getVideoUrl from "../../utils/getVideoUrl";
@@ -18,17 +18,27 @@ const GifItem = ({ gif }: Props) => {
       <Box role="group" pos="relative" lineHeight={0}>
         <NextLink href={`/gifs/${gif.slug}`}>
           <Link href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={6} lineHeight={0}>
-            {/* <AspectRatio ratio={1 / 1.2}> */}
-            <Box
-              m={0}
-              border={0}
-              rounded={6}
-              w="100%"
-              height="100%"
-              bg={colorMode === "light" ? "grey.100" : "gray.700"}
-            >
-              <Box rounded="md" as="img" h="full" w="full" objectFit="cover" src={gif.smallUrl} lineHeight={0} />
-              {/* <Box
+            <AspectRatio ratio={gif.width / gif.height}>
+              <Box
+                m={0}
+                border={0}
+                rounded={6}
+                w="100%"
+                height="100%"
+                bg={colorMode === "light" ? "grey.100" : "gray.700"}
+              >
+                <Box
+                  rounded="md"
+                  as="img"
+                  h="full"
+                  w="full"
+                  objectFit="cover"
+                  src={gif.smallUrl}
+                  lineHeight={0}
+                  minW={gif.width}
+                  minH={gif.height}
+                />
+                {/* <Box
                   as="video"
                   src={gif.smallUrl}
                   autoPlay={true}
@@ -41,8 +51,8 @@ const GifItem = ({ gif }: Props) => {
                   objectFit="cover"
                   onError={() => {}}
                 ></Box> */}
-            </Box>
-            {/* </AspectRatio> */}
+              </Box>
+            </AspectRatio>
           </Link>
         </NextLink>
         <Box

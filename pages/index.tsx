@@ -45,7 +45,7 @@ const Home = ({ firstPageGifs, totalCount }: Props) => {
       </Head>
       <Stack spacing={8}>
         <Hero
-          h1={"The Perfect Pull Request Approval Responses"}
+          h1={"The Ultimate Collection of LGTM GIFs for Developers"}
           sub={"Looks good to me! Say more with gifs and level up your pull request approvals."}
         />
         <GifList
