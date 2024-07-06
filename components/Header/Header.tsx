@@ -89,6 +89,17 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
             <Stack direction="row" spacing={3}>
               <Box>
                 <Button
+                  as={Link}
+                  href="https://twitter.com/LGTMGifs"
+                  isExternal
+                  size="sm"
+                  _hover={{ textDecor: "none" }}
+                >
+                  Follow us on Twitter
+                </Button>
+              </Box>
+              <Box>
+                <Button
                   onClick={onCopyMd}
                   colorScheme={"blue"}
                   size="sm"
