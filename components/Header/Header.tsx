@@ -94,6 +94,7 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
                   isExternal
                   size="sm"
                   _hover={{ textDecor: "none" }}
+                  data-splitbee-event="Click Twitter Link"
                 >
                   Follow us on Twitter
                 </Button>

@@ -27,6 +27,10 @@ const Footer = () => {
           </Flex>
           <HStack spacing={6}>
             <HStack spacing={4} mb={{ xs: 4, md: 0 }}>
+              <Link href="https://twitter.com/LGTMGifs" isExternal data-splitbee-event="Footer Twitter Link">
+                Twitter
+              </Link>
+
               <NextLink href={"/about"}>
                 <Link href={"/about"}>About</Link>
               </NextLink>
