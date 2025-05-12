@@ -126,8 +126,7 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
 
               <Box>
                 <Button
-                  as={NextLink}
-                  href={"/submit"}
+                  as={Link}
                   href="https://airtable.com/shrZeMbytqjPxWMWa"
                   isExternal
                   colorScheme={"brand"}
