@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Layout from "../components/Layout/Layout";
 import theme from "../theme/theme";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Analytics } from "@vercel/analytics/next";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient({
@@ -12,7 +13,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <ChakraProvider theme={theme}>
         <Layout>
-          <Component {...pageProps} />
+          <>
+            <Component {...pageProps} />
+            <Analytics />
+          </>
         </Layout>
       </ChakraProvider>
     </QueryClientProvider>
