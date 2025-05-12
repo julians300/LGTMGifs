@@ -16,29 +16,28 @@ const GifItem = ({ gif }: Props) => {
   return (
     <Box>
       <Box role="group" pos="relative" lineHeight={0}>
-        <NextLink href={`/gifs/${gif.slug}`}>
-          <Link href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={6} lineHeight={0}>
-            <AspectRatio ratio={gif.width / gif.height}>
+        <Link as={NextLink} href={`/gifs/${gif.slug}`} display={"inline-block"} w={"100%"} rounded={6} lineHeight={0}>
+          <AspectRatio ratio={gif.width / gif.height}>
+            <Box
+              m={0}
+              border={0}
+              rounded={6}
+              w="100%"
+              height="100%"
+              bg={colorMode === "light" ? "grey.100" : "gray.700"}
+            >
               <Box
-                m={0}
-                border={0}
-                rounded={6}
-                w="100%"
-                height="100%"
-                bg={colorMode === "light" ? "grey.100" : "gray.700"}
-              >
-                <Box
-                  rounded="md"
-                  as="img"
-                  h="full"
-                  w="full"
-                  objectFit="cover"
-                  src={gif.smallUrl}
-                  lineHeight={0}
-                  minW={gif.width}
-                  minH={gif.height}
-                />
-                {/* <Box
+                rounded="md"
+                as="img"
+                h="full"
+                w="full"
+                objectFit="cover"
+                src={gif.smallUrl}
+                lineHeight={0}
+                minW={gif.width}
+                minH={gif.height}
+              />
+              {/* <Box
                   as="video"
                   src={gif.smallUrl}
                   autoPlay={true}
@@ -51,10 +50,9 @@ const GifItem = ({ gif }: Props) => {
                   objectFit="cover"
                   onError={() => {}}
                 ></Box> */}
-              </Box>
-            </AspectRatio>
-          </Link>
-        </NextLink>
+            </Box>
+          </AspectRatio>
+        </Link>
         <Box
           h="full"
           w="full"

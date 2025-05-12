@@ -39,51 +39,50 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
           <HStack py={6} justifyContent={"space-between"}>
             <HStack spacing={12}>
               <Box>
-                <NextLink href="/">
-                  <Link
-                    display="block"
-                    href="/"
-                    aria-label="LGTM Gifs, Back to homepage"
-                    rounded={"100px"}
-                    _hover={{ textDecor: "none" }}
-                    transform="scale(1.85) translateX(6px)"
-                  >
-                    <VisuallyHidden>
-                      <Image src="/images/logo.png" width="28px" height="28px" alt="LGTM Gifs" pointerEvents="none" />
-                    </VisuallyHidden>
-                    <Box position="relative" aria-hidden={true}>
+                <Link
+                  display="block"
+                  as={NextLink}
+                  href="/"
+                  aria-label="LGTM Gifs, Back to homepage"
+                  rounded={"100px"}
+                  _hover={{ textDecor: "none" }}
+                  transform="scale(1.85) translateX(6px)"
+                >
+                  <VisuallyHidden>
+                    <Image src="/images/logo.png" width="28px" height="28px" alt="LGTM Gifs" pointerEvents="none" />
+                  </VisuallyHidden>
+                  <Box position="relative" aria-hidden={true}>
+                    <Image
+                      src="/images/logo-front.png"
+                      width="28px"
+                      height="28px"
+                      alt="LGTM Gifs"
+                      position="absolute"
+                      zIndex={9}
+                      pointerEvents="none"
+                    />
+
+                    <Box rounded={"full"} fontSize={0} _hover={{ animation: spinAnimation }}>
                       <Image
-                        src="/images/logo-front.png"
+                        src="/images/logo-back.png"
                         width="28px"
                         height="28px"
                         alt="LGTM Gifs"
-                        position="absolute"
-                        zIndex={9}
                         pointerEvents="none"
                       />
-
-                      <Box rounded={"full"} fontSize={0} _hover={{ animation: spinAnimation }}>
-                        <Image
-                          src="/images/logo-back.png"
-                          width="28px"
-                          height="28px"
-                          alt="LGTM Gifs"
-                          pointerEvents="none"
-                        />
-                      </Box>
                     </Box>
-                    <VisuallyHidden>
-                      <Text
-                        display={"inline"}
-                        fontSize={{ base: "14px", md: "16px" }}
-                        fontWeight={"700"}
-                        letterSpacing={"-.5px"}
-                      >
-                        LGTM Gifs
-                      </Text>
-                    </VisuallyHidden>
-                  </Link>
-                </NextLink>
+                  </Box>
+                  <VisuallyHidden>
+                    <Text
+                      display={"inline"}
+                      fontSize={{ base: "14px", md: "16px" }}
+                      fontWeight={"700"}
+                      letterSpacing={"-.5px"}
+                    >
+                      LGTM Gifs
+                    </Text>
+                  </VisuallyHidden>
+                </Link>
               </Box>
             </HStack>
             <Stack direction="row" spacing={3}>
@@ -126,22 +125,21 @@ const Header = ({ randomGif }: { randomGif: Gif }) => {
               </Box>
 
               <Box>
-                <NextLink href={"/submit"}>
-                  <Button
-                    as={Link}
-                    href="https://airtable.com/shrZeMbytqjPxWMWa"
-                    isExternal
-                    colorScheme={"brand"}
-                    _hover={{ textDecor: "none", bgColor: "#c64735" }}
-                    size="sm"
-                    rounded={6}
-                    border="1px solid #be5643"
-                    boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
-                  >
-                    <Icon as={FaRegPaperPlane} mr={2} />
-                    Add a Gif
-                  </Button>
-                </NextLink>
+                <Button
+                  as={NextLink}
+                  href={"/submit"}
+                  href="https://airtable.com/shrZeMbytqjPxWMWa"
+                  isExternal
+                  colorScheme={"brand"}
+                  _hover={{ textDecor: "none", bgColor: "#c64735" }}
+                  size="sm"
+                  rounded={6}
+                  border="1px solid #be5643"
+                  boxShadow="0 1px 2px rgb(15 15 15 / 10%)"
+                >
+                  <Icon as={FaRegPaperPlane} mr={2} />
+                  Add a Gif
+                </Button>
               </Box>
               <Button p={0} variant="link" onClick={toggleColorMode}>
                 <Icon width="24px" as={colorMode === "light" ? BiMoon : BiSun} />

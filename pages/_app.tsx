@@ -10,16 +10,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     defaultOptions: { queries: { refetchOnWindowFocus: false } },
   });
   return (
-    <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <Layout>
-          <>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider theme={theme}>
+          <Layout>
             <Component {...pageProps} />
-            <Analytics />
-          </>
-        </Layout>
-      </ChakraProvider>
-    </QueryClientProvider>
+          </Layout>
+        </ChakraProvider>
+      </QueryClientProvider>
+      <Analytics />
+    </>
   );
 }
 

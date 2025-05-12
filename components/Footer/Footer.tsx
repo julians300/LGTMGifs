@@ -30,10 +30,9 @@ const Footer = () => {
               <Link href="https://twitter.com/LGTMGifs" isExternal data-splitbee-event="Footer Twitter Link">
                 Twitter
               </Link>
-
-              <NextLink href={"/about"}>
-                <Link href={"/about"}>About</Link>
-              </NextLink>
+              <Link as={NextLink} href={"/about"}>
+                About
+              </Link>
               <Link href={"https://airtable.com/shr8DNKtWz5PuZL5q"} isExternal>
                 Contact
               </Link>
